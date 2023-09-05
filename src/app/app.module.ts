@@ -22,6 +22,7 @@ import { RainbowDirective } from "./directives/rainbow.directive";
 import { DefaultImagePipe } from "./cv/pipes/default-image.pipe";
 import { LoggerService } from "./services/logger.Service";
 import { TodoComponent } from "./todo/todo/todo.component";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { TodoComponent } from "./todo/todo/todo.component";
     RainbowDirective,
     DefaultImagePipe,
     TodoComponent,
+    NavbarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [LoggerService],
