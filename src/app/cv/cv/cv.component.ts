@@ -4,6 +4,7 @@ import { LoggerService } from "../../services/logger.Service";
 import { SayHellpService } from "../../services/say-hellp.service";
 import { TodoService } from "../../todo/service/todo.service";
 import { CvService } from "../services/cv.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-cv",
@@ -19,11 +20,13 @@ export class CvComponent {
     private loggerService: LoggerService,
     private sayHellpService: SayHellpService,
     private todoService: TodoService,
-    private cvService: CvService
+    private cvService: CvService,
+    private toastr: ToastrService
   ) {
     this.sayHellpService.hello();
     this.loggerService.logger("Cc je suis le cvComponent");
     this.cvs = this.cvService.getCvs();
+    this.toastr.info("Bienvenu dans notre CvTech :)");
   }
   getSelectedCv(cv: Cv) {
     this.selectedCv = cv;

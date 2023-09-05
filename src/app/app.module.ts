@@ -1,7 +1,11 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import { ToastrModule } from "ngx-toastr";
 
 import { AppRoutingModule } from "./app-routing.module";
+
 import { AppComponent } from "./app.component";
 import { FirstComponent } from "./first/first.component";
 import { SecondComponent } from "./second/second.component";
@@ -22,7 +26,8 @@ import { RainbowDirective } from "./directives/rainbow.directive";
 import { DefaultImagePipe } from "./cv/pipes/default-image.pipe";
 import { LoggerService } from "./services/logger.Service";
 import { TodoComponent } from "./todo/todo/todo.component";
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { DetailsComponent } from './cv/details/details.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +50,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     DefaultImagePipe,
     TodoComponent,
     NavbarComponent,
+    DetailsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+  ],
   providers: [LoggerService],
   bootstrap: [AppComponent],
 })
