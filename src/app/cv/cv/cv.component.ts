@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { Cv } from "../model/cv.model";
 import { LoggerService } from "../../services/logger.Service";
 import { SayHellpService } from "../../services/say-hellp.service";
+import { TodoService } from "../../todo/service/todo.service";
+import { CvService } from "../services/cv.service";
 
 @Component({
   selector: "app-cv",
@@ -10,29 +12,21 @@ import { SayHellpService } from "../../services/say-hellp.service";
 })
 export class CvComponent {
   selectedCv: Cv | null = null;
-
+  cvs: Cv[] = [];
   date = new Date();
-  cvs: Cv[] = [
-    new Cv(1, "sellaouti", "aymen", "teacher", "", "111&", 41),
-    new Cv(2, "sellaouti", "skander", "teacher", "", "122", 4),
-    new Cv(
-      3,
-      "sellaouti",
-      "skander",
-      "teacher",
-      "rotating_card_profile3.png",
-      "122",
-      4
-    ),
-  ];
+
   constructor(
     private loggerService: LoggerService,
-    private sayHellpService: SayHellpService
+    private sayHellpService: SayHellpService,
+    private todoService: TodoService,
+    private cvService: CvService
   ) {
     this.sayHellpService.hello();
     this.loggerService.logger("Cc je suis le cvComponent");
+    this.cvs = this.cvService.getCvs();
   }
   getSelectedCv(cv: Cv) {
     this.selectedCv = cv;
+    this.todoService.logTodos();
   }
 }
