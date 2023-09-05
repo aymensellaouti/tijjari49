@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Cv } from "../model/cv.model";
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: "app-list",

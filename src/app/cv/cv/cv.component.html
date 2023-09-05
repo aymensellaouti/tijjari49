@@ -1,4 +1,7 @@
 <div class="row">
+  <div class="alert alert-warning">
+    {{ date | date : "fullDate" | uppercase }}
+  </div>
   <div class="col">
     <app-list (forwardCv)="getSelectedCv($event)" [cvs]="cvs"></app-list>
   </div>
