@@ -1,5 +1,6 @@
 import {
   Directive,
+  ElementRef,
   HostBinding,
   HostListener,
   Input,
@@ -14,7 +15,7 @@ export class HighlightDirective implements OnInit {
   @Input() out = "red";
   @HostBinding("style.backgroundColor")
   bgc = this.out;
-  constructor() {}
+  constructor(private el: ElementRef) {}
   ngOnInit(): void {
     this.bgc = this.out;
   }
@@ -22,9 +23,11 @@ export class HighlightDirective implements OnInit {
   @HostListener("mouseenter")
   onMouseEnter() {
     this.bgc = this.in;
+    this.el.nativeElement.innerHTML = "IN";
   }
   @HostListener("mouseleave")
   onMouseLeave() {
     this.bgc = this.out;
+    this.el.nativeElement.innerHTML = "OUT";
   }
 }
