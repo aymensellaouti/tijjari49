@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
 import { ToastrModule } from "ngx-toastr";
 
@@ -34,6 +34,8 @@ import { LoginComponent } from "./auth/login/login.component";
 import { FrontComponent } from "./components/front/front.component";
 import { AdminComponent } from "./components/admin/admin.component";
 import { TestObservableComponent } from "./components/test-observable/test-observable.component";
+import { AddCvComponent } from "./cv/add-cv/add-cv.component";
+import { AuthInterceptor } from "./auth/interceptor/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { TestObservableComponent } from "./components/test-observable/test-obser
     FrontComponent,
     AdminComponent,
     TestObservableComponent,
+    AddCvComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,14 @@ import { TestObservableComponent } from "./components/test-observable/test-obser
     ToastrModule.forRoot(), // ToastrModule added
     HttpClientModule,
   ],
-  providers: [LoggerService],
+  providers: [
+    LoggerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

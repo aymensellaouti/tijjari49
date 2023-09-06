@@ -9,6 +9,8 @@ import { SecondComponent } from "./second/second.component";
 import { DetailsComponent } from "./cv/details/details.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { AdminComponent } from "./components/admin/admin.component";
+import { AddCvComponent } from "./cv/add-cv/add-cv.component";
+import { AuthGuard } from "./auth/guard/auth.guard";
 
 const routes: Routes = [
   {
@@ -18,9 +20,9 @@ const routes: Routes = [
   },
   { path: "", component: FirstComponent },
   { path: "cv", component: CvComponent },
+  { path: "cv/add", component: AddCvComponent, canActivate: [AuthGuard] },
   { path: "cv/:id", component: DetailsComponent },
   { path: "todo", component: TodoComponent },
-
   { path: "color", component: ColorComponent },
   { path: "login", component: LoginComponent },
   { path: ":haja", component: SecondComponent },

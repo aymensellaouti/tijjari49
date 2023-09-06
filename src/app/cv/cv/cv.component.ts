@@ -5,7 +5,7 @@ import { SayHellpService } from "../../services/say-hellp.service";
 import { TodoService } from "../../todo/service/todo.service";
 import { CvService } from "../services/cv.service";
 import { ToastrService } from "ngx-toastr";
-import { distinctUntilChanged } from "rxjs";
+import { catchError, distinctUntilChanged, Observable, of } from "rxjs";
 
 @Component({
   selector: "app-cv",
@@ -13,7 +13,7 @@ import { distinctUntilChanged } from "rxjs";
   styleUrls: ["./cv.component.css"],
 })
 export class CvComponent {
-  cvs: Cv[] = [];
+  cvs$: Observable<Cv[]>;
   date = new Date();
   nb = 0;
   constructor(
@@ -28,7 +28,21 @@ export class CvComponent {
     });
     this.sayHellpService.hello();
     this.loggerService.logger("Cc je suis le cvComponent");
-    this.cvs = this.cvService.getCvs();
+    this.cvs$ = this.cvService.getCvs().pipe(
+      catchError((e) => {
+        this.toastr.error(`Les données sont fake veuillez contacter l'admin`);
+        return of(this.cvService.getFakeCvs());
+      })
+    );
     this.toastr.info("Bienvenu dans notre CvTech :)");
+    // this.cvs$ = this.cvService.getCvs().subscribe({
+    //   next: (cvs) => (this.cvs = cvs),
+    //   error: (e) => {
+    //     console.log(e);
+
+    //     this.cvs = this.cvService.getFakeCvs();
+    //     this.toastr.error(`Les données sont fake veuillez contacter l'admin`);
+    //   },
+    // });
   }
 }
