@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { SayHellpService } from "../services/say-hellp.service";
 
 @Component({
   selector: "app-first",
@@ -10,7 +11,9 @@ export class FirstComponent {
   isHidden = false;
   name = "aymen";
   message = "";
-  constructor() {}
+  constructor(private hello: SayHellpService) {
+    this.hello.getTodos().subscribe((todos) => console.log({ todos }));
+  }
 
   hideShow() {
     this.isHidden = !this.isHidden;

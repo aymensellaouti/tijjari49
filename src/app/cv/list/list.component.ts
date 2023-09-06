@@ -10,9 +10,9 @@ import { formatDate } from "@angular/common";
 export class ListComponent {
   // list(cvs)
   @Input() cvs: Cv[] = [];
-  @Output() forwardCv = new EventEmitter<Cv>();
+  // @Output() forwardCv = new EventEmitter<Cv>();
 
-  onSelectCv(cv: Cv) {
-    this.forwardCv.emit(cv);
-  }
+  // onSelectCv(cv: Cv) {
+  //   this.forwardCv.emit(cv);
+  // }
 }

@@ -5,6 +5,7 @@ import { SayHellpService } from "../../services/say-hellp.service";
 import { TodoService } from "../../todo/service/todo.service";
 import { CvService } from "../services/cv.service";
 import { ToastrService } from "ngx-toastr";
+import { distinctUntilChanged } from "rxjs";
 
 @Component({
   selector: "app-cv",
@@ -12,10 +13,9 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./cv.component.css"],
 })
 export class CvComponent {
-  selectedCv: Cv | null = null;
   cvs: Cv[] = [];
   date = new Date();
-
+  nb = 0;
   constructor(
     private loggerService: LoggerService,
     private sayHellpService: SayHellpService,
@@ -23,13 +23,12 @@ export class CvComponent {
     private cvService: CvService,
     private toastr: ToastrService
   ) {
+    this.cvService.selectCv$.pipe(distinctUntilChanged()).subscribe(() => {
+      this.nb++;
+    });
     this.sayHellpService.hello();
     this.loggerService.logger("Cc je suis le cvComponent");
     this.cvs = this.cvService.getCvs();
     this.toastr.info("Bienvenu dans notre CvTech :)");
-  }
-  getSelectedCv(cv: Cv) {
-    this.selectedCv = cv;
-    this.todoService.logTodos();
   }
 }
