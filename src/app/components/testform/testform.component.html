@@ -1,0 +1,15 @@
+<form #formulaire="ngForm">
+  name
+  <input type="text" required class="form-control" ngModel name="name" />
+  age<input
+    required
+    min="17"
+    type="number"
+    class="form-control"
+    ngModel
+    name="age"
+  />
+  <button (click)="processForm(formulaire)" class="btn btn-warning">
+    submit
+  </button>
+</form>

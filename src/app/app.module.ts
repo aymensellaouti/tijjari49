@@ -28,6 +28,10 @@ import { LoggerService } from "./services/logger.Service";
 import { TodoComponent } from "./todo/todo/todo.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { DetailsComponent } from './cv/details/details.component';
+import { TestformComponent } from './components/testform/testform.component';
+import { LoginComponent } from './auth/login/login.component';
+import { FrontComponent } from './components/front/front.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +55,10 @@ import { DetailsComponent } from './cv/details/details.component';
     TodoComponent,
     NavbarComponent,
     DetailsComponent,
+    TestformComponent,
+    LoginComponent,
+    FrontComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
